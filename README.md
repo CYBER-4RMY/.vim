@@ -1,5 +1,4 @@
 <h1 align="center">Vim C0nf</h1>
----
 
 ## Prefetch...
 
@@ -20,6 +19,8 @@
     source ~/.vim/vimrc
 ```
 3. Well that's all now you can get a difference between your previous vim and recent vim.
+
+<img width="1920" height="1046" alt="image" src="https://github.com/user-attachments/assets/e4279d6e-4f5f-4174-9064-3841374f0a30" />
 
 **Dependency**
     - Fzf
@@ -45,6 +46,7 @@ Well it is actually a normal vim with some tweak and other plugin mixture.
 5. Intelligent file back keybind.
 
 <h2 align="center">Keybinds....</h2>
+
 1. `space + cd` -> for :Ex mode (vim)
 2. `space + f` -> for :Files mode (fzf)
 3. `space + b` -> for :Buffer mode (fzf)
@@ -77,10 +79,14 @@ Well it is actually a normal vim with some tweak and other plugin mixture.
 21. `:q` -> when you want to quite that save file then you have to enter that **:q** command (before you go every time you have to hit **esc** button)
 22. `:q!` -> when you want to over write your code or something what you written and get back to your old code or thing then this is the helper for you.
 23. `u` (undo) -> when you are in commander mode then it will **undo** the thing what you did to that code.
-24. `ctrl + r` (redo) -> If  you did something right and took wine and then do the wrong thing again then this is the helper for you. 
+24. `ctrl + r` (redo) -> If  you did something right and took wine and then do the wrong thing again then this is the helper for you.
+25. `:colorscheme` -> this help you to set colorscheme in your vim. (preinstalled only)
 
 <h2 align="center">===(BONOUS)===</h2>
+
 - When you are deleting one word you can give size like `7x` that will gonna delete 7 letters form your that line and the courser place Or for a word `dw`.
 - Similar for `dd` you can do it by entering any line number that will delete form your courser present place. like `10dd` -> 10 line delete.
+
+---
 
 > To be continue........ :)
