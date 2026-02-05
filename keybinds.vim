@@ -9,7 +9,7 @@ nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>h :History<CR>
 
 "==== Highlighting shortcut ====
-nnoremap <Esc> :nohlsearch<CR>
+nnoremap <silent> <leader><Esc> :nohlsearch<CR>
 
 "===== navigation shortcuts =====
 nnoremap <C-h> <C-w>h

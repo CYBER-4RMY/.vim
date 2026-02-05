@@ -19,7 +19,7 @@ set backspace=indent,eol,start
 syntax on
 
 " This is for colorscheme
-colorscheme pablo
+colorscheme torte
 
 " Cursor context
 set cursorline
