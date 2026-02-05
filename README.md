@@ -48,6 +48,7 @@ Well it is actually a normal vim with some tweak and other plugin mixture.
 6. New colorfull mode added
 7. Coursor line added
 8. spliting mode added with new keybind
+9. Mouse intraction enabled
 
 <h2 align="center">Keybinds....</h2>
 
