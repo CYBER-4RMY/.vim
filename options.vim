@@ -1,3 +1,7 @@
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
 " This is for number line and Animation
 set number
 set relativenumber
@@ -40,6 +44,9 @@ set hlsearch
 set undofile
 set undodir=~/.vim/undo//
 
+" keep a backup file (restore to previous version)
+set backup
+
 " Split behavior
 set splitbelow
 set splitright
@@ -55,3 +62,50 @@ set matchtime=2
 
 " Mouse settings
 set mouse=a
+
+" time out for key codes
+set ttimeout
+set ttimeoutlen=100
+
+" Show @@@ in the last line if it is truncated.
+set display=truncate
+
+" Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
+" confusing.
+set nrformats-=octal
+
+" When editing a file, always jump to the last known cursor position.
+augroup vimStartup
+  autocmd!
+  autocmd BufReadPost *
+    \ let line = line("'\"")
+    \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+    \      && index(['xxd', 'gitrebase', 'tutor'], &filetype) == -1
+    \      && !&diff
+    \ |   execute "normal! g`\""
+    \ | endif
+augroup END
+
+" Prevent that the langmap option applies to characters that result from a
+" mapping.
+set nolangremap
+
+" ===== HTML Folding =====
+let g:html_expr_folding = 1
+
+" ===== Spell Checking =====
+" Uncomment the following lines to enable spell checking.
+" set spell
+" set spelllang=en_us
+
+" ===== Templates =====
+augroup templates
+  autocmd!
+  autocmd BufNewFile *.cpp 0r ~/.vim/templates/template.cpp
+  autocmd BufNewFile *.py 0r ~/.vim/templates/template.py
+  autocmd BufNewFile *.java 0r ~/.vim/templates/template.java
+  autocmd BufNewFile *.c 0r ~/.vim/templates/template.c
+  autocmd BufNewFile *.go 0r ~/.vim/templates/template.go
+  autocmd BufNewFile *.rs 0r ~/.vim/templates/template.rs
+  autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
+augroup END

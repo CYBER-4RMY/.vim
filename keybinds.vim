@@ -16,3 +16,51 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+"===== advanced keybindings =====
+" Don't use Q for Ex mode, use it for formatting.
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" ===== Convert to HTML =====
+command! TOhtml :TOhtml
+
+" ===== Spell Checking =====
+" The following keybindings are for spell checking.
+" They are only active when spell checking is enabled.
+" Move to the next misspelled word.
+nnoremap <silent> <leader>sn ]s
+" Move to the previous misspelled word.
+nnoremap <silent> <leader>sp [s
+" Add the word under the cursor to the spell file.
+nnoremap <silent> <leader>sa zg
+" Mark the word under the cursor as a spelling mistake.
+nnoremap <silent> <leader>sw zw
+" Show spelling suggestions for the word under the cursor.
+nnoremap <silent> <leader>ss z=
+
+" ===== Compile and Run =====
+nnoremap <silent> <leader>c :Compile<CR>
+nnoremap <silent> <leader>r :Run<CR>
+nnoremap <silent> <leader>cr :CompileAndRun<CR>
+
+" ===== Test Case Handling =====
+nnoremap <silent> <leader>ti :CreateInputFile<CR>
+nnoremap <silent> <leader>te :CreateExpectedOutputFile<CR>
+nnoremap <silent> <leader>td :RunAndDiff<CR>
+
+" ===== Code Snippets (Abbreviations) =====
+" Golang
+autocmd FileType go iab <buffer> mainf func main() {\<CR>}\<ESC>kA
+autocmd FileType go iab <buffer> forr for i, v := range  { }<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Rust
+autocmd FileType rust iab <buffer> mainf fn main() {\<CR>}\<ESC>kA
+autocmd FileType rust iab <buffer> forr for x in  { }<Left><Left><Left><Left>
+
+" Bash
+autocmd FileType sh iab <buffer> shbang #!/bin/bash\<CR>\<CR>
+autocmd FileType sh iab <buffer> iff if [ ]\<CR>then\<CR>fi<Left><Left><Left><Left><Left><Left><Left><Left><Left>

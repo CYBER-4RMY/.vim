@@ -54,14 +54,122 @@ Well it is actually a normal vim with some tweak and other plugin mixture.
 
 1. `space + cd` -> for :Ex mode (vim)
 2. `space + f` -> for :Files mode (fzf)
-3. `space + b` -> for :Buffer mode (fzf)
+3. `space + b` -> for :Buffers mode (fzf)
 4. `space + h` -> for :History mode (fzf)
 5. `ctrl + v` -> for vertical split.
 6. `ctrl + s` -> for split in half by potrait mode.
 7. `ctrl + h/j/k/l` -> move between yout splited tabs (**left/down/up/rigt**)
 8. `space + ESC` -> clear search highlight
 
---- 
+---
+
+<h2 align="center">Advanced Features....</h2>
+
+This configuration has been enhanced with several advanced features inspired by Vim's default settings and optimized for competitive programming.
+
+- **Matchit Plugin**: The `matchit` plugin is now included. This plugin enhances the `%` command to jump between matching HTML/XML tags, and other language constructs. See the "Filetype Specific Features" section for more details.
+
+- **New Keybindings**:
+    - `Q` -> In normal mode, this key is now mapped to `gq` for easy text formatting. For example, `gqap` will format the current paragraph.
+    - `Ctrl-U` in Insert Mode -> This key combination is now undoable in a single step, making it safer to use.
+
+- **New Options**:
+    - **Backup Files**: Vim will now automatically create a backup file when you save a file. This can be useful for recovering lost work.
+    - **Jump to Last Cursor Position**: When you open a file, the cursor will automatically jump to the last known position.
+
+- **Man Page Viewer**: You can now use Vim to read man pages. Just run `man <command>` in your shell, and it will open in Vim.
+
+- **Convert to HTML**: You can convert the current buffer to an HTML file with the `:TOhtml` command. This is great for sharing code with syntax highlighting.
+
+- **Spell Checking**:
+    - To enable spell checking, uncomment the `set spell` and `set spelllang=en_us` lines in `options.vim`.
+    - Once enabled, you can use the following keybindings:
+        - `<leader>sn`: Move to the next misspelled word.
+        - `<leader>sp`: Move to the previous misspelled word.
+        - `<leader>sa`: Add the word under the cursor to the spell file.
+        - `<leader>sw`: Mark the word under the cursor as a spelling mistake.
+        - `<leader>ss`: Show spelling suggestions for the word under the cursor.
+
+- **Code Templates for Competitive Programming**:
+    - Templates are available for C++ (`.cpp`), Python (`.py`), Java (`.java`), C (`.c`), Golang (`.go`), Rust (`.rs`), and Bash (`.sh`).
+    - To use, simply create a new file with the corresponding extension (e.g., `:e main.cpp` or `:e script.sh`). The template will be automatically inserted.
+
+- **Compile and Run (`<leader>c`, `<leader>r`, `<leader>cr`)**:
+    - These keybindings are available in normal mode.
+    - `<leader>c`: Compiles the current file (C++, Java). For Python, it will just show a message as Python is interpreted.
+    - `<leader>r`: Runs the compiled/interpreted program in a new terminal window.
+    - `<leader>cr`: Compiles (if applicable) and then runs the program.
+
+- **Test Case Handling (`<leader>ti`, `<leader>te`, `<leader>td`)**:
+    - These keybindings are available in normal mode.
+    - `<leader>ti`: Creates an empty `input.txt` file in the current directory for providing custom test inputs. Open this file to input your test data.
+    - `<leader>te`: Creates an empty `expected_output.txt` file for storing the expected output of a test case. Open this file to paste or type the correct output.
+    - `<leader>td`: Runs your program with `input.txt` as stdin, saves the output to `output.txt`, and then opens a diff view between `output.txt` and `expected_output.txt`. This allows you to quickly compare your program's output with the expected output.
+
+- **Debugging with `termdebug`**:
+    - Vim's built-in terminal debugger is now enabled.
+    - To start a debugging session for a C/C++ program, compile your program with debugging symbols (e.g., `g++ -g main.cpp -o main`). Then, in Vim, use the command `:Termdebug <your-program-executable>`. This integrates `gdb` into Vim, allowing you to set breakpoints, step through code, and inspect variables. Refer to `:help termdebug` for more detailed usage.
+
+- **Code Snippets with Abbreviations**:
+    - You can create simple code snippets using Vim's built-in abbreviations. These are defined in your `keybinds.vim`.
+    - To use an abbreviation, type the abbreviation in insert mode, and it will expand automatically.
+    - Examples:
+        - **C++**: `forloop` expands to a basic `for` loop.
+        - **Golang**:
+            - `mainf`: Expands to a basic `func main()` structure.
+            - `forr`: Expands to a `for ... range` loop structure.
+        - **Rust**:
+            - `mainf`: Expands to a basic `fn main()` structure.
+            - `forr`: Expands to a `for ... in` loop structure.
+        - **Bash**:
+            - `shbang`: Expands to `#!/bin/bash` with a newline.
+            - `iff`: Expands to a basic `if [ ] then fi` block.
+
+- **Autosuggestions**:
+    - While Vim's core functionality is autocompletion (triggered by `Ctrl-N` or `Ctrl-X Ctrl-O`), true autosuggestion (suggestions appearing as you type) can be achieved with external plugins. If you wish to explore this, you might consider plugins like `vim-autosuggestions` (which you would install using Vim's native package management by cloning it into `~/.vim/pack/plugins/start/`).
+
+
+---
+
+<h2 align="center">Filetype Specific Features....</h2>
+
+This configuration uses Vim's filetype plugins to provide features tailored to specific programming languages. These plugins are enabled by `filetype plugin indent on` in `options.vim`, so you get all these features automatically.
+
+### Python
+
+- **Omni Completion**: Use `Ctrl-X Ctrl-O` in insert mode for intelligent completion of Python code.
+- **Navigation**:
+    - `]]` and `[[`: Jump between classes and functions.
+    - `]m` and `[m`: Jump to the next/previous method.
+- **Documentation**: Press `K` on a keyword to open its documentation with `pydoc`.
+- **Testing**: If you are in a file named `test_*.py` or `*_test.py`, you can run `pytest` on it with the `:make` command.
+
+### C/C++
+
+- **Omni Completion**: Use `Ctrl-X Ctrl-O` in insert mode for intelligent completion of C/C++ code.
+- **Navigation**: Use `%` to jump between `#if`/`#elif`/`#else`/`#endif` blocks.
+- **Documentation**: Press `K` on a keyword to open its man page in a new terminal window.
+
+### HTML
+
+- **Omni Completion**: Use `Ctrl-X Ctrl-O` in insert mode for intelligent completion of HTML tags.
+- **Navigation**: Use `%` to jump between opening and closing HTML tags.
+- **Folding**: HTML tags will be automatically folded. You can use `za` to toggle folds.
+
+### Go
+
+- **Formatting**: Use `gq` to format your Go code with `gofmt`. For example, `gqip` will format the current paragraph.
+- **Navigation**:
+    - `]]` and `[[`: Jump between `func` and `type` blocks.
+- **Documentation**: Press `K` on a keyword to look up its documentation with `go doc`.
+
+### Shell
+
+- **Navigation**: Use `%` to jump between `if`/`fi`, `for`/`done`, and `case`/`esac`.
+- **Documentation**: In a bash script, press `K` on a command to look up its documentation.
+- **Linting**: If you have `shellcheck` installed, you can run it on your script with the `:make` command to find potential errors. You can install it with `sudo apt install shellcheck`, `sudo dnf install shellcheck`, or `sudo pacman -S shellcheck`.
+
+---
 
 ## Some extra content for vim
 
@@ -70,14 +178,14 @@ Well it is actually a normal vim with some tweak and other plugin mixture.
 03. `:so` -> after making some changes in **.vimrc** this is the **source** command in vim.
 04. `shift + v` -> for seleceting multiple lines.
 05. `y` -> after selecting the things you can copy that in vim using that **y** keybind. `y -> yan/copy`
-06. `p` -> that stands for paste. after **y** you can paste that using **p**. `p ->> paste`
+06. `p` -> that stands for paste. after **y** you can paste that using **p`. `p ->> paste`
 07. `shift + c` -> this help to delete selected portion and directly get into **insert** mode.
 08. `x` -> in normal mode you can delete a single letter using it. 
 09. `dd` -> it can delete a single line.
 10. `m + <any_letter/number>` -> This can help to mark a point in your code.
 11. `w` -> this is for go to one word by word jump forward.
 12. `b` -> this is for go to one word by one word jump in backward.
-13. `/` -> this is for find anything. 
+13. `/ -> this is for find anything. 
 14. `n` -> after find that is the next word jump keybind forward.
 15. `N/ shift + n` -> this is for reverse side jump
 16. `ctrl + n` -> show suggestion in your code after writing something where you forgot.
