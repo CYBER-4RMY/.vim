@@ -8,6 +8,19 @@
 
 ---
 
+<h2 align="center">What's New? (Recent Updates)</h2>
+
+This configuration has been updated to be more powerful without adding any new external plugins. Here’s a summary of the changes:
+
+*   **No features were removed.** All your existing settings and keybinds are still here.
+*   **Enhanced FZF:** Added new keybindings to search for text within files (`<leader>a`), lines in buffers (`<leader>l`), and git commits (`<leader>gc`).
+*   **Upgraded C++ Template:** The competitive programming template for C++ now includes common headers, fast I/O setup, and a multi-testcase structure.
+*   **Quickfix Navigation:** Added keybindings to easily open, close, and navigate the quickfix window, which is essential for jumping between compile errors.
+*   **Session Management:** You can now save and load your entire Vim session (open files, window layout) with simple keybindings, allowing you to quickly resume your work on a project.
+*   **Improved Editor UI:** Added live previews for substitute commands and a better command-line completion menu.
+
+---
+
 ## Installation...
 
 1. Copy the repository to your local machine using this...
@@ -26,12 +39,13 @@
 **Dependency**
     - Fzf
     - Vim
+    - ripgrep (optional, for <leader>a)
 
 - That's all is it....
 
-- For ARCH ('sudo pacman -S fzf vim')
-- For DEBIAN ('sudo apt install fzf vim')
-- For REDHAT ('sudo dnf/yum install fzf vim')
+- For ARCH ('sudo pacman -S fzf vim ripgrep')
+- For DEBIAN ('sudo apt install fzf vim ripgrep')
+- For REDHAT ('sudo dnf/yum install fzf vim ripgrep')
 
 ---
 
@@ -54,107 +68,94 @@ Well it is actually a normal vim with some tweak and other plugin mixture.
 
 This section outlines the keybindings available in your Vim configuration. `<leader>` is mapped to `space`.
 
-1.  **General Navigation & FZF**:
+1.  **General Navigation & Windowing**:
     *   `space + cd` -> for `:Ex` mode (Vim's file explorer)
-    *   `space + f` -> for `:Files` mode (FZF fuzzy file search)
-    *   `space + b` -> for `:Buffers` mode (FZF fuzzy buffer search)
-    *   `space + h` -> for `:History` mode (FZF command history search)
     *   `ctrl + v` -> for vertical split.
     *   `ctrl + s` -> for split in half by portrait mode.
     *   `ctrl + h/j/k/l` -> move between your splited tabs (**left/down/up/right**)
     *   `space + ESC` -> clear search highlight
 
-2.  **Advanced Editing Keybindings**:
+2.  **FZF (Enhanced)**:
+    *   `space + f` -> for `:Files` mode (FZF fuzzy file search)
+    *   `space + b` -> for `:Buffers` mode (FZF fuzzy buffer search)
+    *   `space + h` -> for `:History` mode (FZF command history search)
+    *   `space + a` -> for `:Ag` mode (FZF text search in project, needs `ripgrep`)
+    *   `space + l` -> for `:Lines` mode (FZF line search in open buffers)
+    *   `space + gc` -> for `:Commits` mode (FZF git commit history)
+
+3.  **Quickfix Navigation**:
+    *   `space + co` -> Open the quickfix window to see errors.
+    *   `space + cc` -> Close the quickfix window.
+    *   `space + cn` -> Jump to the next error in the quickfix list.
+    *   `space + cp` -> Jump to the previous error in the quickfix list.
+
+4.  **Session Management**:
+    *   `space + ss` -> Save the current session (open files, layout) to `Session.vim`.
+    *   `space + sl` -> Load the session from `Session.vim`.
+
+5.  **Advanced Editing Keybindings**:
     *   `Q` -> Reformat selected text or current paragraph (uses `gq`).
     *   `Ctrl-U` (in Insert Mode) -> Deletes text from the cursor to the beginning of the line, but now each deletion is a separate undoable action.
 
-3.  **Utility Keybindings**:
+6.  **Utility Keybindings**:
     *   `:TOhtml` -> Convert the current buffer to an HTML file (useful for sharing code with syntax highlighting).
 
-4.  **Spell Checking Keybindings** (only active if spell checking is enabled - see Advanced Features):
+7.  **Spell Checking Keybindings**:
     *   `space + sn` -> Move to the next misspelled word.
     *   `space + sp` -> Move to the previous misspelled word.
     *   `space + sa` -> Add the word under the cursor to the spell file.
     *   `space + sw` -> Mark the word under the cursor as a spelling mistake.
     *   `space + ss` -> Show spelling suggestions for the word under the cursor.
 
-5.  **Competitive Programming Keybindings**:
+8.  **Competitive Programming Keybindings**:
     *   **Compile and Run**:
-        *   `space + c` -> Compiles the current file (C++, Java). Python is interpreted, so it will just show a message.
-        *   `space + r` -> Runs the compiled/interpreted program in a new terminal window.
+        *   `space + c` -> Compiles the current file (C++, Java).
+        *   `space + r` -> Runs the compiled/interpreted program.
         *   `space + cr` -> Compiles (if applicable) and then runs the program.
     *   **Test Case Handling**:
-        *   `space + ti` -> Creates an empty `input.txt` file in the current directory.
-        *   `space + te` -> Creates an empty `expected_output.txt` file in the current directory.
-        *   `space + td` -> Runs your program with `input.txt` as stdin, saves the output to `output.txt`, and opens a diff view with `expected_output.txt`.
+        *   `space + ti` -> Creates an empty `input.txt` file.
+        *   `space + te` -> Creates an empty `expected_output.txt` file.
+        *   `space + td` -> Runs your program and diffs the output with `expected_output.txt`.
+
+---
+
+<h2 align="center">Smarter Autocompletion (No Plugins!)....</h2>
+
+You asked for VS-Code like suggestions without adding plugins. While true "IntelliSense" requires plugins, you can get very far by mastering Vim's powerful built-in completion system. We've now enhanced it with `set completeopt=menu,menuone,noselect`.
+
+While in **Insert Mode**, you can trigger different types of completion:
+
+*   `Ctrl-N` or `Ctrl-P`: This is the most common one. It searches for matching keywords in the current file and all other open files.
+*   `Ctrl-X Ctrl-O`: This is **Omni Completion**. It's filetype-aware and provides more intelligent, context-specific suggestions (e.g., for Python or C++ functions and variables).
+*   `Ctrl-X Ctrl-L`: Completes a whole line of text at once.
+*   `Ctrl-X Ctrl-F`: Searches for and completes file paths and names.
+
+**How to use it:**
+1.  Start typing a variable, function, or keyword.
+2.  Press `Ctrl-N` to open the completion menu.
+3.  Use `Ctrl-N` and `Ctrl-P` to navigate the list, or just keep typing to filter.
+4.  Press `<Enter>` to accept a suggestion.
 
 ---
 
 <h2 align="center">Advanced Features....</h2>
 
-This configuration has been enhanced with several advanced features inspired by Vim's default settings and optimized for competitive programming.
-
-- **Matchit Plugin**: The `matchit` plugin is now included. This plugin enhances the `%` command to jump between matching HTML/XML tags, and other language constructs. See the "Filetype Specific Features" section for more details.
-
-- **New Keybindings**:
-    - `Q` -> In normal mode, this key is now mapped to `gq` for easy text formatting. For example, `gqap` will format the current paragraph.
-    - `Ctrl-U` in Insert Mode -> This key combination is now undoable in a single step, making it safer to use.
-
 - **New Options**:
-    - **Backup Files**: Vim will now automatically create a backup file when you save a file. This can be useful for recovering lost work.
-    - **Jump to Last Cursor Position**: When you open a file, the cursor will automatically jump to the last known position.
+    *   **Better Completion Menu**: The autocompletion menu's behavior has been improved to be less intrusive.
+    *   **Live Previews**: Substitutions (`:s/.../.../`) will now show a live preview of the change.
+    *   **Command-Line Menu**: You now have an enhanced completion menu when typing commands.
+    *   **Backup Files**: Vim will automatically create a backup file when you save.
+    *   **Jump to Last Cursor Position**: When you open a file, the cursor will automatically jump to the last known position.
 
-- **Man Page Viewer**: You can now use Vim to read man pages. Just run `man <command>` in your shell, and it will open in Vim.
-
-- **Convert to HTML**: You can convert the current buffer to an HTML file with the `:TOhtml` command. This is great for sharing code with syntax highlighting.
-
-- **Spell Checking**:
-    - To enable spell checking, uncomment the `set spell` and `set spelllang=en_us` lines in `options.vim`.
-    - Once enabled, you can use the following keybindings:
-        - `space + sn`: Move to the next misspelled word.
-        - `space + sp`: Move to the previous misspelled word.
-        - `space + sa`: Add the word under the cursor to the spell file.
-        - `space + sw`: Mark the word under the cursor as a spelling mistake.
-        - `space + ss`: Show spelling suggestions for the word under the cursor.
-
-- **Code Templates for Competitive Programming**:
-    - Templates are available for C++ (`.cpp`), Python (`.py`), Java (`.java`), C (`.c`), Golang (`.go`), Rust (`.rs`), and Bash (`.sh`).
-    - To use, simply create a new file with the corresponding extension (e.g., `:e main.cpp` or `:e script.sh`). The template will be automatically inserted.
+- **Code Templates**:
+    *   Templates are now available for **C++, Python, Java, C, Go, Rust, Bash, Assembly (.s, .asm), Lua, Nim, Kotlin, and Perl** for various development needs.
+    *   To use, simply create a new file with the corresponding extension (e.g., `:e main.cpp` or `:e index.html`).
+    *   **Upgraded C++ Template**: The C++ template is now significantly more powerful for competitive programming, including fast I/O and a `solve()` function structure for multiple test cases.
 
 - **Compile and Run (`space + c`, `space + r`, `space + cr`)**:
-    - These keybindings are available in normal mode.
-    - `space + c`: Compiles the current file (C++, Java). For Python, it will just show a message as Python is interpreted.
-    - `space + r`: Runs the compiled/interpreted program in a new terminal window.
-    - `space + cr`: Compiles (if applicable) and then runs the program.
+    *   These keybindings are available in normal mode to compile and/or run your code. When errors occur, use the **Quickfix Navigation** keybindings to jump to each error.
 
-- **Test Case Handling (`space + ti`, `space + te`, `space + td`)**:
-    - These keybindings are available in normal mode.
-    - `space + ti`: Creates an empty `input.txt` file in the current directory for providing custom test inputs. Open this file to input your test data.
-    - `space + te`: Creates an empty `expected_output.txt` file for storing the expected output of a test case. Open this file to paste or type the correct output.
-    - `space + td`: Runs your program with `input.txt` as stdin, saves the output to `output.txt`, and then opens a diff view between `output.txt` and `expected_output.txt`. This allows you to quickly compare your program's output with the expected output.
-
-- **Debugging with `termdebug`**:
-    - Vim's built-in terminal debugger is now enabled.
-    - To start a debugging session for a C/C++ program, compile your program with debugging symbols (e.g., `g++ -g main.cpp -o main`). Then, in Vim, use the command `:Termdebug <your-program-executable>`. This integrates `gdb` into Vim, allowing you to set breakpoints, step through code, and inspect variables. Refer to `:help termdebug` for more detailed usage.
-
-- **Code Snippets with Abbreviations**:
-    - You can create simple code snippets using Vim's built-in abbreviations. These are defined in your `keybinds.vim`.
-    - To use an abbreviation, type the abbreviation in insert mode, and it will expand automatically.
-    - Examples:
-        - **C++**: `forloop` expands to a basic `for` loop.
-        - **Golang**:
-            - `mainf`: Expands to a basic `func main()` structure.
-            - `forr`: Expands to a `for ... range` loop structure.
-        - **Rust**:
-            - `mainf`: Expands to a basic `fn main()` structure.
-            - `forr`: Expands to a `for ... in` loop structure.
-        - **Bash**:
-            - `shbang`: Expands to `#!/bin/bash` with a newline.
-            - `iff`: Expands to a basic `if [ ] then fi` block.
-
-- **Autosuggestions**:
-    - While Vim's core functionality is autocompletion (triggered by `Ctrl-N` or `Ctrl-X Ctrl-O`), true autosuggestion (suggestions appearing as you type) can be achieved with external plugins. If you wish to explore this, you might consider plugins like `vim-autosuggestions` (which you would install using Vim's native package management by cloning it into `~/.vim/pack/plugins/start/`).
-
+- **And all the other great features you already had**, including `matchit`, man page viewing, `termdebug`, and more!
 
 ---
 

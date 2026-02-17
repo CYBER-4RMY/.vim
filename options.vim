@@ -102,6 +102,7 @@ set spelllang=en_us
 " ===== Templates =====
 augroup templates
   autocmd!
+  " For competitive programming
   autocmd BufNewFile *.cpp 0r ~/.vim/templates/template.cpp
   autocmd BufNewFile *.py 0r ~/.vim/templates/template.py
   autocmd BufNewFile *.java 0r ~/.vim/templates/template.java
@@ -109,4 +110,26 @@ augroup templates
   autocmd BufNewFile *.go 0r ~/.vim/templates/template.go
   autocmd BufNewFile *.rs 0r ~/.vim/templates/template.rs
   autocmd BufNewFile *.sh 0r ~/.vim/templates/template.sh
+  " For web development and Docker
+  autocmd BufNewFile *.html 0r ~/.vim/templates/template.html
+  autocmd BufNewFile *.css 0r ~/.vim/templates/template.css
+  autocmd BufNewFile *.js 0r ~/.vim/templates/template.js
+  autocmd BufNewFile Dockerfile 0r ~/.vim/templates/template.dockerfile
+  " Additional languages
+  autocmd BufNewFile *.s,*.asm 0r ~/.vim/templates/template.asm
+  autocmd BufNewFile *.lua 0r ~/.vim/templates/template.lua
+  autocmd BufNewFile *.nim 0r ~/.vim/templates/template.nim
+  autocmd BufNewFile *.kt 0r ~/.vim/templates/template.kt
+  autocmd BufNewFile *.pl 0r ~/.vim/templates/template.pl
 augroup END
+
+
+" Better command-line completion
+set wildmenu
+set wildmode=longest:full,full
+
+" Live preview for substitution commands
+" set inccommand=split
+
+" Better completion menu behavior
+set completeopt=menu,menuone,noselect
