@@ -28,10 +28,10 @@ This document provides an exhaustive overview of your Vim configuration, detaili
     source ~/.vim/vimrc
     ```
 3.  **Install Essential Dependencies:**
-    Ensure you have `fzf` and `Vim` (version 8.1 or higher for `terminal` command) installed. For advanced features like project-wide search (`<leader>a`), `ripgrep` is highly recommended. For Python linting, `flake8` is needed.
-    *   **For Arch Linux:** `sudo pacman -S fzf vim ripgrep`
-    *   **For Debian/Ubuntu:** `sudo apt install fzf vim ripgrep`
-    *   **For Fedora/RHEL:** `sudo dnf install fzf vim ripgrep`
+    Ensure you have `fzf` and `Vim` (version 8.1 or higher for `terminal` command) installed. For Python linting, `flake8` is needed.
+    *   **For Arch Linux:** `sudo pacman -S fzf vim`
+    *   **For Debian/Ubuntu:** `sudo apt install fzf vim`
+    *   **For Fedora/RHEL:** `sudo dnf install fzf vim`
     *   **For Python Linting:** `pip install flake8`
 
 ---
@@ -130,9 +130,10 @@ The `<leader>` key is mapped to `space`. All keybindings are `nnoremap` unless s
 *   `<leader>f`: Fuzzy find files in the current project (`:Files`).
 *   `<leader>b`: Fuzzy find and switch between open buffers (`:Buffers`).
 *   `<leader>h`: Fuzzy find and execute commands from history (`:History`).
-*   `<leader>a`: Fuzzy find text across all files in the current project (`:Ag`, requires `ripgrep`).
-*   `<leader>l`: Fuzzy find lines within all open buffers (`:Lines`).
-*   `<leader>gc`: Fuzzy find and view Git commit history (`:Commits`).
+
+> **Note on FZF Commands (`<leader>a`, `<leader>l`, `<leader>gc`):**
+> Due to the preference of not installing external plugins from GitHub, advanced FZF commands like `:Ag` (project-wide text search), `:Lines` (search in buffers), and `:Commits` (git commit history) are not available in this configuration. The keybindings for these commands (`<leader>a`, `<leader>l`, `<leader>gc`) have been removed from `keybinds.vim` to avoid confusion.
+
 
 ### Autocompletion:
 
@@ -271,7 +272,7 @@ This configuration leverages Vim's built-in filetype plugins to provide tailored
 These are self-contained plugins residing in your `~/.vim/plugins/` directory.
 
 *   `compiler.vim`: Provides commands (`:Compile`, `:Run`, `:CompileAndRun`, `:CreateInputFile`, `:CreateExpectedOutputFile`, `:RunAndDiff`) for competitive programming workflows.
-*   `fzf.vim`: Integrates the `fzf` fuzzy finder, providing commands like `:Files`, `:Buffers`, `:History`, `:Ag`, `:Lines`, `:Commits`.
+*   `fzf.vim`: Integrates the core `fzf` fuzzy finder functionality, providing commands like `:Files`, `:Buffers`, `:History`. Note that advanced commands like `:Ag` (project-wide text search), `:Lines` (search in buffers), and `:Commits` (git commit history) are not available as they require the full `fzf.vim` plugin distribution from GitHub.
 *   `mod_ff.vim`: (Functionality derived from its name, likely file manipulation or formatting related).
 *   `tohtml.vim`: Enables the `:TOhtml` command to convert the current buffer to an HTML file with syntax highlighting.
 *   `matchit` (auto-loaded): Enhances `%` command to jump between matching constructs (HTML/XML tags, #if/#endif, etc.).

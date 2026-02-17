@@ -66,13 +66,7 @@ autocmd FileType sh iab <buffer> shbang #!/bin/bash\<CR>\<CR>
 autocmd FileType sh iab <buffer> iff if [ ]\<CR>then\<CR>fi<Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 
-" ===== FZF additions =====
-" Search for text in the project using fzf with ripgrep (if available)
-nnoremap <silent> <leader>a :Ag<CR>
-" Search for lines in all open buffers
-nnoremap <silent> <leader>l :Lines<CR>
-" Search for git commits
-nnoremap <silent> <leader>gc :Commits<CR>
+
 
 " ===== Quickfix List Navigation =====
 nnoremap <leader>co :copen<CR>
