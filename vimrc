@@ -1,6 +1,6 @@
 " ===== Load core config =====
-source ~/.vim/options.vim
-source ~/.vim/keybinds.vim
+source ~/.vim/core/options.vim
+source ~/.vim/core/keybinds.vim
 
 " ===== Load plugins =====
 source ~/.vim/plugins/fzf.vim
